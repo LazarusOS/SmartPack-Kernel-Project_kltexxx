@@ -4969,6 +4969,14 @@ config PVS_LEVEL_INTERFACE
 	help
 	 Allow PVS level to be shown in Boeffla-Config app
 
+config FORCE_FAST_CHARGE
+	bool "Force fast charging (AC/USB) by Yank555.lu"
+	default y
+	help
+	  A simple sysfs interface to force adapters that
+	  are detected as USB to charge as AC (1A/h) or to set
+	  custom charging currents for AC and USB.
+
 endif
 
 config KERNEL_TEXT_MPU_PROT

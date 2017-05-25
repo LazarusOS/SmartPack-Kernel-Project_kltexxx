@@ -3577,6 +3577,12 @@ config ALUCARD_HOTPLUG
 	help
 	  Generic Alucard-hotplug cpu hotplug driver for ARM SOCs
 
+config CPU_VOLTAGE_TABLE
+	bool "Enable CPU Voltage Table via sysfs"
+	default y
+	help
+	  DTS based kernel User Voltage Control
+
 config MSM_AVS_HW
 	bool "Enable Adaptive Voltage Scaling (AVS)"
 	default n

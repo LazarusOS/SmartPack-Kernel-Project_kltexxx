@@ -1,0 +1,40 @@
+SmartPack Kernel project for AOSP 7.x.x. and LOS-14.1 based ROMs [Galaxy S5]
+
+xda forum: https://forum.xda-developers.com/galaxy-s5/unified-development/kernel-project-kltexxx-t3564206
+
+Based on stock LOS sourse code.
+
+/* Presently supported devices */
+1. SM-G900F, SM-G900V & SM-S902L (klte)
+2. SM-G900K/L/S (kltekor)
+3. SM-G900FD & SM-G900MD (klteduos)
+4. SM-G900I (kltedv)
+5. SM-G900P (kltespr)
+
+Stable release date: March 22, 2017
+
+/* Features */
+
+Build from latest Lineage OS source code.
+Build using Linaro gcc 4.9 toolchain.
+Anykernel for compatibility with maximum devices.
+Kernel tweaker app recommend: Kernel Adiutor-Mod.
+Added features includes
+CPU voltage control
+CPU Freq Gov: INTELLIDEMAND, INTELLIACTIVE, WHEATLEY, SMARTMAX, LIONHEART, NIGHTMARE, PEGASUSQ, IMPULSE, SMARTMAX_EPS, ADAPTIVE, ALUCARD, ZZMOVE, TRIPNDROID, YANKACTIVE...
+CPU hotplugs: Alucard and Zen decision.
+IO schedulers: FIOPS, SIO, VR, ZEN, FIFO, TRIPNDROID.
+TCP congestion algorithms: Westwood, reno, cubic etc.
+USB fast charging (requires USB 3.0)
+Faux sound
+FRandom
+The Ultra Kernel Samepage Merging (UKSM) feature
+CPU input boost
+Dynamic sync control 2.0
+a lot more...
+
+/* How to */
+1. Go to recovery (TWRP recommend)
+2. Flash Kernel
+3. Wipe Cache/Dalvik Cache
+4. Reboot and enjoy

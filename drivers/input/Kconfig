@@ -181,6 +181,11 @@ config INPUT_EXPANDED_ABS
 	  ABS_MAX change from 0x3f to 0x4f.
 	  This feature must synchronize with input framework and uinput.
 
+config HOMEBUTTON
+tristate "Home button driver"
+help
+  Say Y here if you want home button to be visible to apps
+
 comment "Input Device Drivers"
 
 source "drivers/input/keyboard/Kconfig"

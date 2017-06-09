@@ -1,17 +1,26 @@
 #!/bin/bash
 
-# SmartPack Kernel Build Script
+echo -e $COLOR_GREEN"\n SmartPack Kernel Build Script\n"$COLOR_NEUTRAL
 #
-# (c) sunilpaulmathew@xda-developers.com
+echo -e $COLOR_GREEN"\n (c) sunilpaulmathew@xda-developers.com\n"$COLOR_NEUTRAL
 
-export ARCH=arm
-export CROSS_COMPILE=/home/sunil/arm-linux-androideabi-4.9-linaro/bin/arm-linux-androideabi-
+TOOLCHAIN="/home/sunil/arm-linux-androideabi-4.9-linaro/bin/arm-linux-androideabi-"
+ARCHITECTURE=arm
+
+NUM_CPUS=""   # number of cpu cores used for build (leave empty for auto detection)
+
+export ARCH=$ARCHITECTURE
+export CROSS_COMPILE="${CCACHE} $TOOLCHAIN"
+
+if [ -z "$NUM_CPUS" ]; then
+	NUM_CPUS=`grep -c ^processor /proc/cpuinfo`
+fi
 
 mkdir output_lgt
 
 echo -e $COLOR_GREEN"\n building Smartpack kernel for kltelgt\n"$COLOR_NEUTRAL
 
-make -C $(pwd) O=output_lgt msm8974_sec_defconfig VARIANT_DEFCONFIG=msm8974pro_sec_klte_lgt_defconfig SELINUX_DEFCONFIG=selinux_defconfig && make -C $(pwd) O=output_lgt
+make -C $(pwd) O=output_lgt msm8974_sec_defconfig VARIANT_DEFCONFIG=msm8974pro_sec_klte_lgt_defconfig SELINUX_DEFCONFIG=selinux_defconfig && make -j$NUM_CPUS -C $(pwd) O=output_lgt
 
 echo -e $COLOR_GREEN"\n copying zImage to anykernel directory\n"$COLOR_NEUTRAL
 

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+COLOR_RED="\033[0;31m"
+COLOR_GREEN="\033[1;32m"
+COLOR_NEUTRAL="\033[0m"
+
 echo -e $COLOR_GREEN"\n SmartPack Kernel Build Script\n"$COLOR_NEUTRAL
 #
 echo -e $COLOR_GREEN"\n (c) sunilpaulmathew@xda-developers.com\n"$COLOR_NEUTRAL

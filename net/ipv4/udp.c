@@ -1202,7 +1202,8 @@ try_again:
 	 */
 
 	if (copied < ulen || UDP_SKB_CB(skb)->partial_cov) {
-		if (udp_lib_checksum_complete(skb))
+		checksum_valid = !udp_lib_checksum_complete(skb);
+		if (!checksum_valid)
 			goto csum_copy_err;
 	}
 
@@ -1672,7 +1673,7 @@ int __udp4_lib_rcv(struct sk_buff *skb, struct udp_table *udptable,
 	nf_reset(skb);
 
 	/* No socket. Drop packet silently, if checksum is wrong */
-		if (udp_lib_checksum_complete(skb))
+	if (udp_lib_checksum_complete(skb))
 		goto csum_error;
 
 	UDP_INC_STATS_BH(net, UDP_MIB_NOPORTS, proto == IPPROTO_UDPLITE);

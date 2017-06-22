@@ -72,7 +72,9 @@ fi;
 chmod -R 755 /tmp/anykernel/tools /tmp/anykernel/bin;
 bb=/tmp/anykernel/tools/busybox;
 
-ui_print "Flashing SmartPack Kernel for kltexxx";
+ui_print "SmartPack Kernel for Samsung Galaxy S5 (kltexxx)";
+ui_print " ";
+ui_print "...(c) sunilpaulmathew@xda-developers.com...";
 ui_print " ";
 
 mount -o ro /system;

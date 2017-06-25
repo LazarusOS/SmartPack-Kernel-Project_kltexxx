@@ -20,16 +20,16 @@ if [ -z "$NUM_CPUS" ]; then
 	NUM_CPUS=`grep -c ^processor /proc/cpuinfo`
 fi
 
+mkdir output_kor output_eur output_duos output_spr output_dv
+
 # creating backups
 
 cp scripts/mkcompile_h release_SmartPack/
 
 # updating kernel name
 
-sed "s/\`echo \$LINUX_COMPILE_BY | \$UTS_TRUNCATE\`/SmartPack-Kernel-[sunilpaulmathew/g" -i scripts/mkcompile_h
+sed "s/\`echo \$LINUX_COMPILE_BY | \$UTS_TRUNCATE\`/SmartPack-Kernel-kltekor-[sunilpaulmathew/g" -i scripts/mkcompile_h
 sed "s/\`echo \$LINUX_COMPILE_HOST | \$UTS_TRUNCATE\`/xda-developers.com]/g" -i scripts/mkcompile_h
-
-mkdir output_kor output_eur output_duos output_spr output_dv
 
 echo -e $COLOR_GREEN"\n building Smartpack kernel for kltekor\n"$COLOR_NEUTRAL
 
@@ -49,6 +49,10 @@ rm anykernel_SmartPack/zImage && mv anykernel_SmartPack/dtb release_SmartPack &&
 
 echo -e $COLOR_GREEN"\n building Smartpack kernel for klte\n"$COLOR_NEUTRAL
 
+# updating kernel name
+
+sed -i "s;SmartPack-Kernel-kltekor;SmartPack-Kernel-klte;" scripts/mkcompile_h;
+
 make -C $(pwd) O=output_eur msm8974_sec_defconfig VARIANT_DEFCONFIG=msm8974pro_sec_klte_eur_defconfig SELINUX_DEFCONFIG=selinux_defconfig && make -j$NUM_CPUS -C $(pwd) O=output_eur
 
 echo -e $COLOR_GREEN"\n copying zImage to anykernel directory\n"$COLOR_NEUTRAL
@@ -64,6 +68,10 @@ echo -e $COLOR_GREEN"\n cleaning...\n"$COLOR_NEUTRAL
 rm anykernel_SmartPack/zImage && mv anykernel_SmartPack/SmartPack_* release_SmartPack/
 
 echo -e $COLOR_GREEN"\n building Smartpack kernel for klteduos\n"$COLOR_NEUTRAL
+
+# updating kernel name
+
+sed -i "s;SmartPack-Kernel-klte;SmartPack-Kernel-klteduos;" scripts/mkcompile_h;
 
 make -C $(pwd) O=output_duos msm8974_sec_defconfig VARIANT_DEFCONFIG=msm8974pro_sec_klte_duos_defconfig SELINUX_DEFCONFIG=selinux_defconfig && make -j$NUM_CPUS -C $(pwd) O=output_duos
 
@@ -81,6 +89,10 @@ rm anykernel_SmartPack/zImage && mv anykernel_SmartPack/SmartPack_* release_Smar
 
 echo -e $COLOR_GREEN"\n building Smartpack kernel for kltespr\n"$COLOR_NEUTRAL
 
+# updating kernel name
+
+sed -i "s;SmartPack-Kernel-klteduos;SmartPack-Kernel-kltespr;" scripts/mkcompile_h;
+
 make -C $(pwd) O=output_spr msm8974_sec_defconfig VARIANT_DEFCONFIG=msm8974pro_sec_klte_spr_defconfig SELINUX_DEFCONFIG=selinux_defconfig && make -j$NUM_CPUS -C $(pwd) O=output_spr
 
 echo -e $COLOR_GREEN"\n copying zImage to anykernel directory\n"$COLOR_NEUTRAL
@@ -96,6 +108,10 @@ echo -e $COLOR_GREEN"\n cleaning...\n"$COLOR_NEUTRAL
 rm anykernel_SmartPack/zImage && mv anykernel_SmartPack/SmartPack_* release_SmartPack/
 
 echo -e $COLOR_GREEN"\n building Smartpack kernel for kltedv\n"$COLOR_NEUTRAL
+
+# updating kernel name
+
+sed -i "s;SmartPack-Kernel-kltespr;SmartPack-Kernel-kltedv;" scripts/mkcompile_h;
 
 make -C $(pwd) O=output_dv msm8974_sec_defconfig VARIANT_DEFCONFIG=msm8974pro_sec_klte_dv_defconfig SELINUX_DEFCONFIG=selinux_defconfig && make -j$NUM_CPUS -C $(pwd) O=output_dv
 

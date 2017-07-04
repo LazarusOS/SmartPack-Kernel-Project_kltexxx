@@ -522,5 +522,6 @@ obj-$(CONFIG_GSM_MODEM_SPRD6500) += board-sprd6500-spi.o board-sprd6500-modems.o
 
 obj-$(CONFIG_ZEN_DECISION) += msm_zen_decision.o
 obj-$(CONFIG_ALUCARD_HOTPLUG) += alucard_hotplug.o
+obj-$(CONFIG_INTELLI_PLUG) += intelli_plug.o
 
 obj-$(CONFIG_FORCE_FAST_CHARGE) += fastchg.o

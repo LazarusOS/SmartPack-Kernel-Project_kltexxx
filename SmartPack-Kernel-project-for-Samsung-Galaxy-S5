@@ -4,33 +4,37 @@ xda forum: https://forum.xda-developers.com/galaxy-s5/unified-development/kernel
 
 Based on stock LOS sourse code.
 
-/* Presently supported devices */
-1. SM-G900F, SM-G900V & SM-S902L (klte)
-2. SM-G900K/L/S (kltekor)
-3. SM-G900FD & SM-G900MD (klteduos)
-4. SM-G900I (kltedv)
-5. SM-G900P (kltespr)
+/* Supported devices */
+1. SM-G900F, SM-G900M, SM-G900V, SM-S902L: klte
+2. SM-G900FD, SM-G900MD: klteduos
+3. SM-G900I: kltedv
+4. SM-G900K, SM-G900L, SM-G900S: kltekor
+5. SM-G900P: kltespr
 
 Stable release date: March 22, 2017
 
 /* Features */
 
 Build from latest Lineage OS source code.
-Build using Linaro gcc 4.9 toolchain.
+Build using Google arm-eabi 4.9_r15 toolchain.
 Anykernel for compatibility with maximum devices.
-Kernel tweaker app recommend: Kernel Adiutor-Mod.
+Linux Kernel version is updated to 3.4.113
+Kernel tweaker app recommend: Offical Kernel Auditor/Kernel Adiutor-Mod.
 Added features includes
 CPU voltage control
-CPU Freq Gov: INTELLIDEMAND, INTELLIACTIVE, WHEATLEY, SMARTMAX, LIONHEART, NIGHTMARE, PEGASUSQ, IMPULSE, SMARTMAX_EPS, ADAPTIVE, ALUCARD, ZZMOVE, TRIPNDROID, YANKACTIVE...
-CPU hotplugs: Alucard and Zen decision.
+CPU Freq Gov: INTELLIDEMAND, INTELLIACTIVE, WHEATLEY, SMARTMAX, LIONHEART, NIGHTMARE, PEGASUSQ, IMPULSE, SMARTMAX_EPS, ADAPTIVE, ALUCARD, ZZMOVE, TRIPNDROID, ABYSSPLUG v2, YANKDEMAND & YANKACTIVE.
+CPU hotplugs: Intelli plug, Alucard, Zen decision, MSM and mako hotplugs.
 IO schedulers: FIOPS, SIO, VR, ZEN, FIFO, TRIPNDROID.
 TCP congestion algorithms: Westwood, reno, cubic etc.
-USB fast charging (requires USB 3.0)
-Faux sound
+Fastcharge
+Sound Control
+Intelli thermal v2.0 
 FRandom
 The Ultra Kernel Samepage Merging (UKSM) feature
 CPU input boost
 Dynamic sync control 2.0
+Additional 27 MHz gpu frequency step (idle frequency)
+KCAL v2
 a lot more...
 
 /* How to */

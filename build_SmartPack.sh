@@ -8,7 +8,7 @@ echo -e $COLOR_GREEN"\n SmartPack Kernel Build Script\n"$COLOR_NEUTRAL
 #
 echo -e $COLOR_GREEN"\n (c) sunilpaulmathew@xda-developers.com\n"$COLOR_NEUTRAL
 
-TOOLCHAIN="/home/sunil/arm-linux-androideabi-4.9_r15/bin/arm-linux-androideabi-"
+TOOLCHAIN="/home/sunil/arm-linux-androideabi-4.9-linaro/bin/arm-linux-androideabi-"
 ARCHITECTURE=arm
 
 NUM_CPUS=""   # number of cpu cores used for build (leave empty for auto detection)

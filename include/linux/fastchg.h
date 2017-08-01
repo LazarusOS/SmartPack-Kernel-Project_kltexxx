@@ -26,8 +26,8 @@
 
 extern int force_fast_charge;
 
-#define FAST_CHARGE_DISABLED 1
-#define FAST_CHARGE_FORCE_AC 0	/* default */
+#define FAST_CHARGE_DISABLED 0	/* default */
+#define FAST_CHARGE_FORCE_AC 1
 #define FAST_CHARGE_FORCE_CUSTOM_MA 2
 
 extern int use_mtp_during_fast_charge;

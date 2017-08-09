@@ -11,6 +11,8 @@ echo -e $COLOR_GREEN"\n (c) sunilpaulmathew@xda-developers.com\n"$COLOR_NEUTRAL
 TOOLCHAIN="/home/sunil/arm-linux-androideabi-4.9-linaro/bin/arm-linux-androideabi-"
 ARCHITECTURE=arm
 
+KERNEL_VERSION=""
+
 NUM_CPUS=""   # number of cpu cores used for build (leave empty for auto detection)
 
 export ARCH=$ARCHITECTURE
@@ -20,16 +22,21 @@ if [ -z "$NUM_CPUS" ]; then
 	NUM_CPUS=`grep -c ^processor /proc/cpuinfo`
 fi
 
-mkdir output_kor output_eur output_duos output_spr output_dv
-
 # creating backups
 
 cp scripts/mkcompile_h release_SmartPack/
+cp arch/arm/configs/msm8974_sec_defconfig release_SmartPack/
 
 # updating kernel name
 
 sed "s/\`echo \$LINUX_COMPILE_BY | \$UTS_TRUNCATE\`/SmartPack-Kernel-kltekor-[sunilpaulmathew/g" -i scripts/mkcompile_h
 sed "s/\`echo \$LINUX_COMPILE_HOST | \$UTS_TRUNCATE\`/xda-developers.com]/g" -i scripts/mkcompile_h
+
+# updating kernel version
+
+sed -i "s;stable;-$KERNEL_VERSION;" arch/arm/configs/msm8974_sec_defconfig;
+
+mkdir output_kor output_eur output_duos output_spr output_dv
 
 echo -e $COLOR_GREEN"\n building Smartpack kernel for kltekor\n"$COLOR_NEUTRAL
 
@@ -130,5 +137,6 @@ rm anykernel_SmartPack/zImage && mv anykernel_SmartPack/SmartPack_* release_Smar
 # restoring backups
 
 mv release_SmartPack/mkcompile_h scripts/
+mv release_SmartPack/msm8974_sec_defconfig arch/arm/configs/
 
 echo -e $COLOR_GREEN"\n everything done... please visit "release_SmartPack"...\n"$COLOR_NEUTRAL

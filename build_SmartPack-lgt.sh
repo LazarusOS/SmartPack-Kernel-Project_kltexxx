@@ -11,7 +11,7 @@ echo -e $COLOR_GREEN"\n (c) sunilpaulmathew@xda-developers.com\n"$COLOR_NEUTRAL
 TOOLCHAIN="/home/sunil/arm-linux-androideabi-4.9-linaro/bin/arm-linux-androideabi-"
 ARCHITECTURE=arm
 
-KERNEL_VERSION=""
+KERNEL_VERSION="stable-v9_r1"
 
 NUM_CPUS=""   # number of cpu cores used for build (leave empty for auto detection)
 

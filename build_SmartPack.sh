@@ -262,74 +262,11 @@ if [ -e output_spr/arch/arm/boot/zImage ]; then
 	mv release_SmartPack/lineage_kltespr_defconfig arch/arm/configs/
 	echo -e $COLOR_GREEN"\n everything done... please visit "release_SmartPack"...\n"$COLOR_NEUTRAL
 else
+	if [ -f anykernel_SmartPack/dtb ]; then
+		rm -f anykernel_SmartPack/dtb
+	fi
 	# restoring backups
 	mv release_SmartPack/mkcompile_h scripts/
 	mv release_SmartPack/lineage_kltespr_defconfig arch/arm/configs/
-	echo -e $COLOR_GREEN"\n Building error... zImage not found...\n"$COLOR_NEUTRAL
-fi
-
-echo -e $COLOR_GREEN"\n building $KERNEL_NAME for kltedv\n"$COLOR_NEUTRAL
-
-# creating backups
-cp scripts/mkcompile_h release_SmartPack/
-cp arch/arm/configs/lineage_kltedv_defconfig release_SmartPack/
-
-# updating kernel name
-
-sed -i "s;SmartPack-Kernel;$KERNEL_NAME-kltedv;" scripts/mkcompile_h;
-
-# updating kernel version
-
-sed -i "s;stable;-$KERNEL_VERSION;" arch/arm/configs/lineage_kltedv_defconfig;
-
-if [ -e output_dv/.config ]; then
-	rm -f output_dv/.config
-	if [ -e output_dv/arch/arm/boot/zImage ]; then
-		rm -f output_dv/arch/arm/boot/zImage
-	fi
-else
-mkdir output_dv
-fi
-
-make -C $(pwd) O=output_dv lineage_kltedv_defconfig && make -j$NUM_CPUS -C $(pwd) O=output_dv
-
-if [ -e output_dv/arch/arm/boot/zImage ]; then
-	echo -e $COLOR_GREEN"\n copying zImage to anykernel directory\n"$COLOR_NEUTRAL
-	cp output_dv/arch/arm/boot/zImage anykernel_SmartPack/
-	# compile dtb if required
-	if [ "y" == "$COMPILE_DTB" ]; then
-		echo -e $COLOR_GREEN"\n compiling device tree blob (dtb)\n"$COLOR_NEUTRAL
-		if [ -f output_dv/arch/arm/boot/dt.img ]; then
-			rm -f output_dv/arch/arm/boot/dt.img
-		fi
-		chmod 777 tools/dtbToolCM
-		tools/dtbToolCM -2 -o output_dv/arch/arm/boot/dt.img -s 2048 -p output_dv/scripts/dtc/ output_dv/arch/arm/boot/
-		# removing old dtb (if any)
-		if [ -f anykernel_SmartPack/dtb ]; then
-			rm -f anykernel_SmartPack/dtb
-		fi
-		# copying generated dtb to anykernel directory
-		if [ -e output_dv/arch/arm/boot/dt.img ]; then
-			mv -f output_dv/arch/arm/boot/dt.img anykernel_SmartPack/dtb
-		fi
-	fi
-	echo -e $COLOR_GREEN"\n generating recovery flashable zip file\n"$COLOR_NEUTRAL
-	cd anykernel_SmartPack/ && zip -r9 $KERNEL_NAME-kltedv-$KERNEL_VERSION-$KERNEL_DATE.zip * -x README.md $KERNEL_NAME-kltedv-$KERNEL_VERSION-$KERNEL_DATE.zip && cd ..
-	echo -e $COLOR_GREEN"\n cleaning...\n"$COLOR_NEUTRAL
-	rm anykernel_SmartPack/zImage && mv anykernel_SmartPack/$KERNEL_NAME* release_SmartPack/
-	if [ -f anykernel_SmartPack/dtb ]; then
-		rm -f anykernel_SmartPack/dtb
-	fi
-	# restoring backups
-	mv release_SmartPack/mkcompile_h scripts/
-	mv release_SmartPack/lineage_kltedv_defconfig arch/arm/configs/
-	echo -e $COLOR_GREEN"\n everything done... please visit "release_SmartPack"...\n"$COLOR_NEUTRAL
-else
-	if [ -f anykernel_SmartPack/dtb ]; then
-		rm -f anykernel_SmartPack/dtb
-	fi
-	# restoring backups
-	mv release_SmartPack/mkcompile_h scripts/
-	mv release_SmartPack/lineage_kltedv_defconfig arch/arm/configs/
 	echo -e $COLOR_GREEN"\n Building error... zImage not found...\n"$COLOR_NEUTRAL
 fi
